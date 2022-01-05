@@ -1,5 +1,7 @@
 package com.june.revisiontool.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ public class QuestionService {
 	public boolean create(Question question) {
 		questionDao.save(question);
 		return true;
+	}
+
+	public Optional<Question> retrieveOne(long questionId) {
+		return questionDao.findById(questionId);
 	}
 
 }

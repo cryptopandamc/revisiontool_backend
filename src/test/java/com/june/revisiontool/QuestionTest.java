@@ -1,5 +1,6 @@
 package com.june.revisiontool;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
@@ -39,8 +40,15 @@ public class QuestionTest {
 		answers.put("D", "Answer four");
 		Question question = new Question("This is a question", answers, "B");
 		boolean created = questionService.create(question);
-		System.err.println(question);
 		assertTrue(created);
 	}
+	
+	@Test
+	void test_ThatAQuestionCanBeRetrievedUsingTheId() {
+		Question questionFromDb = questionService.retrieveOne(1).get();
+		assertEquals(1, questionFromDb.getQuestionId());
+	}
+	
+	
 
 }
