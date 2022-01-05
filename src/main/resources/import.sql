@@ -1,0 +1,6 @@
+insert into QUESTION (QUESTION_ID, CORRECT_ANSWER, QUESTION_TEXT) VALUES (QUESTION_SEQ.nextval, 'B', 'Will this work?');
+
+insert into QUESTION_ANSWER (QUESTION_ID, ANSWERS, ANSWER_ID) VALUES (1, 'hopefully', 'A');
+insert into QUESTION_ANSWER (QUESTION_ID, ANSWERS, ANSWER_ID) VALUES (1, 'correct', 'B');
+insert into QUESTION_ANSWER (QUESTION_ID, ANSWERS, ANSWER_ID) VALUES (1, 'hopefully', 'C');
+insert into QUESTION_ANSWER (QUESTION_ID, ANSWERS, ANSWER_ID) VALUES (1, 'hopefully', 'D');
