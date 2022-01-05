@@ -1,5 +1,6 @@
 package com.june.revisiontool.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class QuestionService {
 
 	public Optional<Question> retrieveOne(long questionId) {
 		return questionDao.findById(questionId);
+	}
+
+	public List<Question> retrieveAll() {
+		return questionDao.findAll();
 	}
 
 }
