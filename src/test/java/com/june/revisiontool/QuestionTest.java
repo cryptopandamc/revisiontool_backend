@@ -2,6 +2,7 @@ package com.june.revisiontool;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -60,4 +61,11 @@ public class QuestionTest {
 		assertFalse(questions.isEmpty());
 	}
 
+	@Test
+	void test_ThatAQuestionCanBeUpdated() {
+		Question questionToUpdate = questionService.retrieveOne(1).get();
+		questionToUpdate.setCorrectAnswer("D");
+		assertNotEquals("B", questionToUpdate.getCorrectAnswer());
+	}
+	
 }
