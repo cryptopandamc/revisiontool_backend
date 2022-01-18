@@ -1,9 +1,8 @@
 package com.june.revisiontool.api;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-
-import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +47,7 @@ public class RestApi {
 		questionService.create(question);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{questionId}").buildAndExpand(question.getQuestionId()).toUri();
 		return ResponseEntity.created(uri).build();
-		
 	}
+	 
+	
 }
