@@ -5,13 +5,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Question {
@@ -24,7 +26,8 @@ public class Question {
 	@Column
 	private String questionText;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers = new ArrayList<>();
 
 	@Column
@@ -34,6 +37,7 @@ public class Question {
 	private boolean approved;
 
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Tag> tags;
 
 	public Question(String questionText, List<Answer> answers, String correctAnswer, boolean approved) {
@@ -51,6 +55,10 @@ public class Question {
 		this.correctAnswer = correctAnswer;
 		this.approved = approved;
 		this.tags = tags;
+	}
+
+	public Question() {
+		super();
 	}
 
 	public long getQuestionId() {

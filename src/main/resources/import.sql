@@ -1,4 +1,7 @@
 insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'collections');
+insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'four pillars');
+insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'week one');
+
 
 insert into QUESTION (QUESTION_ID, CORRECT_ANSWER, QUESTION_TEXT, APPROVED) VALUES (QUESTION_SEQ.nextval, 'B', 'Which of the following collections does not allow duplicates?', false);
 

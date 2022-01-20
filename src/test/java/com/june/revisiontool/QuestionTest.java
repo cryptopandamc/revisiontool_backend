@@ -34,11 +34,13 @@ public class QuestionTest {
 	
 	private List<Answer> answers;
 	private List<Question> questions;
+	private List<Tag> tags;
 	
 	@BeforeEach
 	void init() {
 		answers = new ArrayList<>();
 		questions = new ArrayList<>();	
+		tags = new ArrayList<Tag>();
 	}
 	
 
@@ -88,6 +90,19 @@ public class QuestionTest {
 		Tag tag = new Tag("collections");
 		tagService.create(tag);
 		assertTrue(tag.getTagId() != 0);
+	}
+	
+	@Test
+	void test_thatATagCanBeAddedToAQuestion() {
+		Tag tag = tagService.retrieveOne(1).get();
+		Tag tag2 = tagService.retrieveOne(2).get();
+		tags.add(tag);
+		tags.add(tag2);
+		Question question = questionService.retrieveOne(1).get();
+		question.setTags(tags);
+		questionService.update(question);
+		Question updatedQuestion = questionService.retrieveOne(1).get();
+		assertFalse(updatedQuestion.getTags().isEmpty());
 	}
 	
 }
