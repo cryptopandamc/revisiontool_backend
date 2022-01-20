@@ -29,5 +29,12 @@ public class QuestionService {
 		return questionDao.findAll();
 	}
 
+	public boolean update(Question question) {
+		if (retrieveOne(question.getQuestionId()).isPresent()) {
+			questionDao.save(question);
+			return true;
+		}
+		return false;
+	}
 
 }

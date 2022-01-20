@@ -40,7 +40,7 @@ public class QuestionTest {
 
 	@Test
 	void test_thatAQuestionCanBePersisted() {	
-		Question question = new Question("This is a question", answers, "C");
+		Question question = new Question("This is a question", answers, "C", false);
 		boolean created = questionService.create(question);
 		assertTrue(created);
 	}
@@ -68,6 +68,15 @@ public class QuestionTest {
 	void test_thatASetOfAnswersCanBeRetrieved_ForAQuestion() {
 		Question question = questionService.retrieveOne(1).get();
 		assertEquals(4, question.getAnswers().size());
+	}
+	
+	@Test
+	void test_thatAQuestionCanBeApprovedAfterItIsSubmitted() {
+		Question question = questionService.retrieveOne(1).get();
+		question.setApproved(true);
+		questionService.update(question);
+		boolean statusAfterChange = questionService.retrieveOne(1).get().isApproved();
+		assertTrue( statusAfterChange);
 	}
 	
 }

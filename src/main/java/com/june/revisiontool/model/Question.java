@@ -29,11 +29,15 @@ public class Question {
 	@Column
 	private String correctAnswer;
 
-	public Question(String questionText, List<Answer> answers, String correctAnswer) {
+	@Column
+	private boolean approved;
+
+	public Question(String questionText, List<Answer> answers, String correctAnswer, boolean approved) {
 		super();
 		this.questionText = questionText;
 		this.answers = answers;
 		this.correctAnswer = correctAnswer;
+		this.approved = approved;
 	}
 
 	public Question() {
@@ -72,50 +76,18 @@ public class Question {
 		this.correctAnswer = correctAnswer;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((answers == null) ? 0 : answers.hashCode());
-		result = prime * result + ((correctAnswer == null) ? 0 : correctAnswer.hashCode());
-		result = prime * result + (int) (questionId ^ (questionId >>> 32));
-		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
-		return result;
+	public boolean isApproved() {
+		return approved;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Question other = (Question) obj;
-		if (answers == null) {
-			if (other.answers != null)
-				return false;
-		} else if (!answers.equals(other.answers))
-			return false;
-		if (correctAnswer == null) {
-			if (other.correctAnswer != null)
-				return false;
-		} else if (!correctAnswer.equals(other.correctAnswer))
-			return false;
-		if (questionId != other.questionId)
-			return false;
-		if (questionText == null) {
-			if (other.questionText != null)
-				return false;
-		} else if (!questionText.equals(other.questionText))
-			return false;
-		return true;
+	public void setApproved(boolean approved) {
+		this.approved = approved;
 	}
 
 	@Override
 	public String toString() {
 		return "Question [questionId=" + questionId + ", questionText=" + questionText + ", answers=" + answers
-				+ ", correctAnswer=" + correctAnswer + "]";
+				+ ", correctAnswer=" + correctAnswer + ", approved=" + approved + "]";
 	}
 
 }

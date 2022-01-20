@@ -10,6 +10,7 @@
 
 	<div th:each="question :  ${allQuestions}">
 		<p th:text="${question.questionText}"></p>
+		<p th:text="${question.approved}"></p>
 		<ul>
 			<div th:each="answer: ${question.answers}">
 				<li th:text="${answer.answerText}"></li>
