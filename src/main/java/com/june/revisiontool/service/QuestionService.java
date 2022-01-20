@@ -1,5 +1,6 @@
 package com.june.revisiontool.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,5 +28,6 @@ public class QuestionService {
 	public List<Question> retrieveAll() {
 		return questionDao.findAll();
 	}
+
 
 }

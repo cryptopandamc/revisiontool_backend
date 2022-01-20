@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
+import com.june.revisiontool.model.Answer;
 import com.june.revisiontool.model.Question;
 import com.june.revisiontool.service.QuestionService;
 
@@ -28,23 +28,19 @@ public class QuestionTest {
 	@Autowired
 	private QuestionService questionService;
 	
-	private Map<String, String> answers;
+	private List<Answer> answers;
 	private List<Question> questions;
 	
 	@BeforeEach
 	void init() {
-		answers = new HashMap<>();
+		answers = new ArrayList<>();
 		questions = new ArrayList<>();	
 	}
 	
 
 	@Test
-	void test_thatAQuestionCanBePersisted() {
-		answers.put("A", "Answer one");
-		answers.put("B", "Answer two");
-		answers.put("C", "Answer three");
-		answers.put("D", "Answer four");
-		Question question = new Question("This is a question", answers, "B");
+	void test_thatAQuestionCanBePersisted() {	
+		Question question = new Question("This is a question", answers, "C");
 		boolean created = questionService.create(question);
 		assertTrue(created);
 	}
@@ -66,6 +62,12 @@ public class QuestionTest {
 		Question questionToUpdate = questionService.retrieveOne(1).get();
 		questionToUpdate.setCorrectAnswer("D");
 		assertNotEquals("B", questionToUpdate.getCorrectAnswer());
+	}
+	
+	@Test
+	void test_thatASetOfAnswersCanBeRetrieved_ForAQuestion() {
+		Question question = questionService.retrieveOne(1).get();
+		assertEquals(4, question.getAnswers().size());
 	}
 	
 }

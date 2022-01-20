@@ -1,16 +1,15 @@
 package com.june.revisiontool.model;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -24,18 +23,13 @@ public class Question {
 	@Column
 	private String questionText;
 
-	@ElementCollection
-	@CollectionTable(name = "question_answer", joinColumns = {
-			@JoinColumn(name = "questionId", referencedColumnName = "questionId")
-	})
-	@MapKeyColumn(name = "answerId")
-	@Column(name = "answers")
-	private Map<String, String> answers;
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Answer> answers = new ArrayList<>();
 
 	@Column
 	private String correctAnswer;
 
-	public Question(String questionText, Map<String, String> answers, String correctAnswer) {
+	public Question(String questionText, List<Answer> answers, String correctAnswer) {
 		super();
 		this.questionText = questionText;
 		this.answers = answers;
@@ -62,11 +56,11 @@ public class Question {
 		this.questionText = questionText;
 	}
 
-	public Map<String, String> getAnswers() {
+	public List<Answer> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(Map<String, String> answers) {
+	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
 

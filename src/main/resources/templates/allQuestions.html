@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Question list to follow</h1>
+
+
+	<div th:each="question :  ${allQuestions}">
+		<p th:text="${question.questionText}"></p>
+		<ul>
+			<div th:each="answer: ${question.answers}">
+				<li th:text="${answer.answerText}"></li>
+			</div>
+		</ul>
+	</div>
+
+
+
+
+</body>
+</html>
