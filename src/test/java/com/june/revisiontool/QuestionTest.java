@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,9 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
 import com.june.revisiontool.model.Answer;
 import com.june.revisiontool.model.Question;
+import com.june.revisiontool.model.Tag;
 import com.june.revisiontool.service.QuestionService;
+import com.june.revisiontool.service.TagService;
 
 @SpringBootTest
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -27,6 +28,9 @@ public class QuestionTest {
 	
 	@Autowired
 	private QuestionService questionService;
+	
+	@Autowired
+	private TagService tagService;
 	
 	private List<Answer> answers;
 	private List<Question> questions;
@@ -77,6 +81,13 @@ public class QuestionTest {
 		questionService.update(question);
 		boolean statusAfterChange = questionService.retrieveOne(1).get().isApproved();
 		assertTrue( statusAfterChange);
+	}
+	
+	@Test
+	void test_thatTagsCanBePersisted() {
+		Tag tag = new Tag("collections");
+		tagService.create(tag);
+		assertTrue(tag.getTagId() != 0);
 	}
 	
 }

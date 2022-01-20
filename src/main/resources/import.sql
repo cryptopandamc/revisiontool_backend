@@ -1,3 +1,5 @@
+insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'collections');
+
 insert into QUESTION (QUESTION_ID, CORRECT_ANSWER, QUESTION_TEXT, APPROVED) VALUES (QUESTION_SEQ.nextval, 'B', 'Which of the following collections does not allow duplicates?', false);
 
 insert into ANSWER (ANSWER_ID, ANSWER_TEXT) values (ANSWER_SEQ.nextval, 'ArrayList');
