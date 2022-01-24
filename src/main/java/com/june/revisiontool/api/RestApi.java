@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,18 +37,28 @@ public class RestApi {
 	@GetMapping("Question/{questionId}")
 	public ResponseEntity<Question> question(@PathVariable("questionId") long questionId) {
 		Optional<Question> question = questionService.retrieveOne(questionId);
-		if(question.isEmpty()) {
+		if (question.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(question.get());
 	}
-	
+
 	@PostMapping("CreateQuestion")
-	public ResponseEntity<Void> createQuestion(@RequestBody Question question, BindingResult bindingResult)  {
+	public ResponseEntity<Void> createQuestion(@RequestBody Question question, BindingResult bindingResult) {
 		questionService.create(question);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{questionId}").buildAndExpand(question.getQuestionId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{questionId}")
+				.buildAndExpand(question.getQuestionId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	 
-	
+	/*
+	 * TODO getting errors in talend, will move on for now and come back to this
+	 * soon
+	 * 
+	 * @PutMapping("UpdateQuestion/{questionId}") public ResponseEntity<Question>
+	 * updateQuestin(@PathVariable("questionId") long questionId,
+	 * 
+	 * @RequestBody Question question) { if (questionService.update(question)) {
+	 * return ResponseEntity.ok(question); } return
+	 * ResponseEntity.notFound().build(); }
+	 */
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<h1>Add a new question</h1>
+
+
+	<form action="#" th:action="@{/AddQuestionSubmit}" th:object="${question}"
+		method="post">
+		<table border="1">
+			<tr>
+				<td><label th:if="${questionText} == null"
+					th:text=" ' Add your question'" /></label></td>
+				<td><input type="text" th:field="*{questionText}" /></td>
+			</tr>
+
+			<tr>
+				<td><label th:text=" 'enter answer A for this question ' "></label></td>
+				<td><input type="text" th:field="*{answers}" /></td>
+			</tr>
+
+			<tr>
+				<td><label th:text=" 'enter answer B for this question ' "></label></td>
+				<td><input type="text" th:field="*{answers}" /></td>
+			</tr>
+
+			<tr>
+				<td><label th:text=" 'enter answer C for this question ' "></label></td>
+				<td><input type="text" th:field="*{answers}" /></td>
+			</tr>
+
+			<tr>
+				<td><label th:text=" 'enter answer D for this question ' "></label></td>
+				<td><input type="text" th:field="*{answers}" /></td>
+			</tr>
+
+			<tr>
+				<td><label th:if="${correctAnswer} == null"
+					th:text="'Select the correct answer for this question'" /></label></td>
+				<td><select id="correctAnswer" name="correctAnswer">
+						<option value="A">A</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="D">D</option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td><label>select relevant tags</label>
+				<td><select id="tagId" multiple name="tags">
+						<option th:each="tag : ${allTags}" th:value="${tag.tagId}"
+							th:text="${tag.name}" ></option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td><button type="submit">Add Question</button></td>
+			</tr>
+			
+		</table>
+	</form>
+</body>
+</html>
