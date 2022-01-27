@@ -27,7 +27,7 @@ public class Question {
 	@Column
 	private String questionText;
 
-	@OneToMany(cascade =  CascadeType.PERSIST)
+	@OneToMany(cascade =  CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers = new ArrayList<>();
 
@@ -62,6 +62,10 @@ public class Question {
 		super();
 	}
 
+	public boolean addAnswer(Answer answer) {
+		return answers.add(answer);
+	}
+	
 	public long getQuestionId() {
 		return questionId;
 	}
@@ -109,6 +113,8 @@ public class Question {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
+	
+
 
 	@Override
 	public int hashCode() {

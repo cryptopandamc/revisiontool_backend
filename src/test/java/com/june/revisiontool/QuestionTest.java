@@ -105,4 +105,11 @@ public class QuestionTest {
 		assertFalse(updatedQuestion.getTags().isEmpty());
 	}
 	
+	@Test
+	void test_thatAnswersCanBeAddedToAQuestion() {
+		Question question = questionService.retrieveOne(1).get();
+		Answer answer = new Answer("this should take the total to 5");
+		question.addAnswer(answer);
+		assertEquals(5, question.getAnswers().size());
+	}
 }

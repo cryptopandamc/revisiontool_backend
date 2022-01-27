@@ -52,9 +52,9 @@
 
 			<tr>
 				<td><label>select relevant tags</label>
-				<td><select id="tagId" multiple name="tags">
+				<td><select id="tagId" multiple>
 						<option th:each="tag : ${allTags}" th:value="${tag.tagId}"
-							th:text="${tag.name}" ></option>
+							th:text="${tag.name}"></option>
 				</select></td>
 			</tr>
 

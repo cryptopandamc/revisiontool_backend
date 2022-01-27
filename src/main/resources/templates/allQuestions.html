@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Question list to follow</h1>
+	<h1>List of questions in the database</h1>
 
 
 	<div th:each="question :  ${allQuestions}">
 		<p th:text="${question.questionText}"></p>
 		<p th:text="${question.approved}"></p>
-		<ul>
-			<div th:each="answer: ${question.answers}">
-				<li th:text="${answer.answerText}"></li>
-			</div>
+		<ul th:each="answer: ${question.answers}">
+			<li th:text="${answer.answerText}"></li>
 		</ul>
+		<p><a th:href="@{'EditQuestion/' + ${question.questionId} }">Edit this question</a>
 	</div>
 
-<div><a href="AddQuestion">Add a new question</a></div>
+
+	<div>
+		<a href="AddQuestion">Add a new question</a>
+	</div>
 
 
 </body>
