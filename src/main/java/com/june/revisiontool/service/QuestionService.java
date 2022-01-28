@@ -38,4 +38,12 @@ public class QuestionService {
 		return false;
 	}
 
+	public void approveQuestion(Question question) {
+		question.setApproved(true);
+	}
+
+	public List<Question> retrieveNotApproved() {
+		return questionDao.retrieveNotApproved();
+	}
+
 }

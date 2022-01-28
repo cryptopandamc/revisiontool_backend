@@ -112,4 +112,19 @@ public class QuestionTest {
 		question.addAnswer(answer);
 		assertEquals(5, question.getAnswers().size());
 	}
+	
+	@Test
+	void test_ThatAQuestionCanBeApprovedAfterItIsAdded() {
+		Question questionToApprove = questionService.retrieveOne(1).get();
+		questionService.approveQuestion(questionToApprove);
+		questionService.update(questionToApprove);
+		assertTrue(questionToApprove.isApproved());
+	}
+	
+	@Test
+	void test_ThatAListOfunapprovedQuestionsCanBeRetrieved() {
+		List<Question> questionsNotApproved = questionService.retrieveNotApproved();
+		List<Question> allQuestions = questionService.retrieveAll();
+		assertNotEquals(allQuestions.size(), questionsNotApproved.size());
+	}
 }
