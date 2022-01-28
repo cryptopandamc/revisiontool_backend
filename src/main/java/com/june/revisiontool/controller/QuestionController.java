@@ -116,8 +116,7 @@ public class QuestionController {
 	
 	@PostMapping("/ApproveQuestionSubmit")
 	public ModelAndView approveQuestionSubmit(ModelAndView modelAndView, Question question) {
-		if (questionService.update(question)) {
-			System.err.println(question);
+		if (questionService.approveQuestion(question)) {
 			modelAndView.addObject("allQuestions", questionService.retrieveAll());
 			modelAndView.setViewName("allQuestions");
 			return modelAndView;

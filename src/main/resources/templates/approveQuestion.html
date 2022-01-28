@@ -2,26 +2,78 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Approve questions</title>
+<title>Edit Question Details</title>
 </head>
 <body>
-	<h1>List of questions not yet approved</h1>
 
 
-	<div th:each="question :  ${allQuestions}">
-		<p th:text="${question.questionText}"></p>
-		<p th:text="${question.approved}"></p>
-		<ul th:each="answer: ${question.answers}">
-			<li th:text="${answer.answerText}"></li>
-		</ul>
-		<p><a th:href="@{'ApproveQuestion/' + ${question.questionId} }">Approve this question</a>
-	</div>
+	<h1>Approve this question</h1>
 
 
-	<div>
-		<a href="AddQuestion">Add a new question</a>
-	</div>
+	<form action="#" th:action="@{/ApproveQuestionSubmit}"
+		th:object="${question}" method="post">
+
+		<div>
+			<p>
+				<label th:if="${questionText} == null"
+					th:text=" ' Edit your question'" /></label>
+			</p>
+			<p>
+				<input type="text" th:field="*{questionText}" />
+			</p>
+		</div>
+
+		<div>
+			<p>
+				<label th:text=" 'enter answers A-D for this question ' "></label>
+			</p>
 
 
+			<div th:each="answer, answerIndex: *{answers}">
+				<td><input
+					th:field="*{answers[__${answerIndex.index}__].answerText}"
+					th:value="${answer.getAnswerId()}" /></td> <input hidden
+					th:name="|answers[${answerIndex.index}].answerId|"
+					th:value="${answer.getAnswerId()}" />
+			</div>
+
+
+			<div>
+				<p>
+					<label th:if="${correctAnswer} == null"
+						th:text="'Select the correct answer for this question'" /></label>
+				</p>
+				<p>
+					<select id="correctAnswer" name="correctAnswer"
+						th:value="${question.correctAnswer}"
+						th:selected="${question.correctAnswer}">
+						<option value="A">A</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="D">D</option>
+					</select>
+				</p>
+			</div>
+
+			<div>
+				<p>
+					<label>select relevant tags</label>
+				<p>
+					<select id="tagId" multiple name="tags"
+						th:selected="${question.tags}">
+						<option th:each="tag : ${allTags}" th:value="${tag.tagId}"
+							th:text="${tag.name}"></option>
+					</select>
+				</p>
+			</div>
+
+			<div>
+				<p>
+					<button type="submit">Approve Question</button>
+				</p>
+			</div>
+
+			<input type="hidden" th:field="*{questionId}" value="${questionId}" />
+	</form>
 </body>
 </html>

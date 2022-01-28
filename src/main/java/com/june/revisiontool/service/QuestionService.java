@@ -38,8 +38,13 @@ public class QuestionService {
 		return false;
 	}
 
-	public void approveQuestion(Question question) {
+	public boolean approveQuestion(Question question) {
+		if (retrieveOne(question.getQuestionId()).isPresent()) {
 		question.setApproved(true);
+		update(question);
+		return true;
+		}
+		return false;
 	}
 
 	public List<Question> retrieveNotApproved() {
