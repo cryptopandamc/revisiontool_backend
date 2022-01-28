@@ -53,9 +53,7 @@ public class QuestionController {
 	public ModelAndView editQuestion(@PathVariable("questionId") long questionId, ModelAndView modelAndView) {
 		Optional<Question> question = questionService.retrieveOne(questionId);
 		List<Answer> answers = question.get().getAnswers();
-		System.err.println(answers);
 		AnswerWrapper answerWrapper = new AnswerWrapper();
-	//	int index = answers.get(0).getAnswerId()
 		for (int i = 0	; i >= answers.size(); i++) {
 			Answer answer = answers.get(i);
 			answer.setAnswerId(answer.getAnswerId());
