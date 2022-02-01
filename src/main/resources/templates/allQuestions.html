@@ -2,26 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<title>All quiz questions</title>
 </head>
 <body>
-	<h1>List of questions in the database</h1>
+	<div class="container">
+		<div th:insert="fragments/menu.html"></div>
+		<div>
+			<h1>List of questions in the database</h1>
+		</div>
+
+		<div th:each="question :  ${allQuestions}">
+			<p th:text="${question.questionText}"></p>
+			<p th:text="${question.approved}"></p>
+			<ul th:each="answer: ${question.answers}">
+				<li th:text="${answer.answerText}"></li>
+			</ul>
+			<p>
+				<a th:href="@{'EditQuestion/' + ${question.questionId} }">Edit
+					this question</a>
+		</div>
 
 
-	<div th:each="question :  ${allQuestions}">
-		<p th:text="${question.questionText}"></p>
-		<p th:text="${question.approved}"></p>
-		<ul th:each="answer: ${question.answers}">
-			<li th:text="${answer.answerText}"></li>
-		</ul>
-		<p><a th:href="@{'EditQuestion/' + ${question.questionId} }">Edit this question</a>
+		<div>
+			<a href="AddQuestion">Add a new question</a>
+		</div>
+
 	</div>
-
-
-	<div>
-		<a href="AddQuestion">Add a new question</a>
-	</div>
-
-
 </body>
 </html>

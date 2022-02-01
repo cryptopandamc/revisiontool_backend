@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Revision Appe</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<title>Revision App</title>
 </head>
 <body>
+<div class="container">
+<div th:insert="fragments/menu.html"></div>
+<div>
 <h1>Welcome to the java trainer</h1>
-<a href="AllQuestions">List the questions in the database</a>
-<a href="AllNotApprovedQuestions">List the questions in the database</a>
+</div>
+</div>
 </body>
 </html>

@@ -102,6 +102,7 @@ public class QuestionController {
 	    }
 		
 		modelAndView.addObject("question", question.get());
+		System.err.println(question.get());
 		modelAndView.addObject("allTags", tagService.retrieveAll());
 		modelAndView.addObject("answers", question.get().getAnswers());
 		if (question.isPresent()) {

@@ -2,23 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 <title>Questions that require approval</title>
 </head>
 <body>
-	<h1>List of not approved questions in the database</h1>
+	<div class="container">
+		<div th:insert="fragments/menu.html"></div>
+		<div>
+			<h1>List of not approved questions in the database</h1>
+		</div>
+
+		<div th:each="question :  ${allNotApprovedQuestions}">
+			<p th:text="${question.questionText}"></p>
+			<p th:text="${question.approved}"></p>
+			<ul th:each="answer: ${question.answers}">
+				<li th:text="${answer.answerText}"></li>
+			</ul>
+			<p>
+				<a th:href="@{'ApproveQuestion/' + ${question.questionId} }">Approve
+					this question</a>
+		</div>
 
 
-	<div th:each="question :  ${allNotApprovedQuestions}">
-		<p th:text="${question.questionText}"></p>
-		<p th:text="${question.approved}"></p>
-		<ul th:each="answer: ${question.answers}">
-			<li th:text="${answer.answerText}"></li>
-		</ul>
-		<p><a th:href="@{'ApproveQuestion/' + ${question.questionId} }">Approve this question</a>
 	</div>
-
-
-	
 
 </body>
 </html>

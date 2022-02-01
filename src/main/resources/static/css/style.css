@@ -1,0 +1,108 @@
+form {
+	width: 50%;
+	margin: auto;
+}
+
+table {
+	width: 50%;
+	margin: auto;
+	text-align: left;
+}
+
+table, th, td {
+	border: 1px solid #9966ff;
+	border-collapse: collapse;
+}
+
+table, th {
+	text-align: left;
+}
+
+table, td {
+	text-align: center;
+}
+
+input[type=text], select {
+	width: 100%;
+	padding: 12px 10px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=number], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	width: 100%;
+	background-color: #9966ff;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #aa80ff;
+}
+
+textarea {
+	width: 100%;
+}
+
+div {
+	border-radius: 5px;
+	padding: 20px;
+}
+
+label {
+	font-weight: bold;
+}
+
+.container {
+	width: 90%;
+	margin: auto;
+	background-color: white;
+}
+
+.navBar {
+	background-color: #515151;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #1f1f1f;
+}
+
+.error {
+	color: red;
+}

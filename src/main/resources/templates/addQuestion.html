@@ -2,16 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Add a new Question</title>
 </head>
 <body>
-
+	<div th:insert="fragments/menu.html"></div>
 
 	<h1>Add a new question</h1>
 
 
-	<form action="#" th:action="@{/AddQuestionSubmit}" th:object="${question}"
-		method="post">
+	<form action="#" th:action="@{/AddQuestionSubmit}"
+		th:object="${question}" method="post">
 		<table border="1">
 			<tr>
 				<td><label th:if="${questionText} == null"
@@ -61,7 +61,7 @@
 			<tr>
 				<td><button type="submit">Add Question</button></td>
 			</tr>
-			
+
 		</table>
 	</form>
 </body>
