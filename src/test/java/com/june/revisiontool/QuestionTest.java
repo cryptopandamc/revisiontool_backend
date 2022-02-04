@@ -16,6 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
 import com.june.revisiontool.model.Answer;
+import com.june.revisiontool.model.CorrectAnswer;
 import com.june.revisiontool.model.Question;
 import com.june.revisiontool.model.Tag;
 import com.june.revisiontool.service.QuestionService;
@@ -46,7 +47,7 @@ public class QuestionTest {
 
 	@Test
 	void test_thatAQuestionCanBePersisted() {	
-		Question question = new Question("This is a question", answers, "C", false);
+		Question question = new Question("This is a question", answers, CorrectAnswer.B, false);
 		boolean created = questionService.create(question);
 		assertTrue(created);
 	}
@@ -66,7 +67,7 @@ public class QuestionTest {
 	@Test
 	void test_ThatAQuestionCanBeUpdated() {
 		Question questionToUpdate = questionService.retrieveOne(1).get();
-		questionToUpdate.setCorrectAnswer("D");
+		questionToUpdate.setCorrectAnswer(CorrectAnswer.D);
 		assertNotEquals("B", questionToUpdate.getCorrectAnswer());
 	}
 	
@@ -127,4 +128,6 @@ public class QuestionTest {
 		List<Question> allQuestions = questionService.retrieveAll();
 		assertNotEquals(allQuestions.size(), questionsNotApproved.size());
 	}
+	
+	
 }

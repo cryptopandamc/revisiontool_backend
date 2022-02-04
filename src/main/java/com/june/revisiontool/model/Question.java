@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,12 +29,12 @@ public class Question {
 	@Column
 	private String questionText;
 
-	@OneToMany(cascade =  CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers = new ArrayList<>();
 
-	@Column
-	private String correctAnswer;
+	@Enumerated(EnumType.STRING)
+	private CorrectAnswer correctAnswer;
 
 	@Column
 	private boolean approved;
@@ -41,7 +43,7 @@ public class Question {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Tag> tags;
 
-	public Question(String questionText, List<Answer> answers, String correctAnswer, boolean approved) {
+	public Question(String questionText, List<Answer> answers, CorrectAnswer correctAnswer, boolean approved) {
 		super();
 		this.questionText = questionText;
 		this.answers = answers;
@@ -49,7 +51,8 @@ public class Question {
 		this.approved = approved;
 	}
 
-	public Question(String questionText, List<Answer> answers, String correctAnswer, boolean approved, List<Tag> tags) {
+	public Question(String questionText, List<Answer> answers, CorrectAnswer correctAnswer, boolean approved,
+			List<Tag> tags) {
 		super();
 		this.questionText = questionText;
 		this.answers = answers;
@@ -65,7 +68,7 @@ public class Question {
 	public boolean addAnswer(Answer answer) {
 		return answers.add(answer);
 	}
-	
+
 	public long getQuestionId() {
 		return questionId;
 	}
@@ -90,11 +93,11 @@ public class Question {
 		this.answers = answers;
 	}
 
-	public String getCorrectAnswer() {
+	public CorrectAnswer getCorrectAnswer() {
 		return correctAnswer;
 	}
 
-	public void setCorrectAnswer(String correctAnswer) {
+	public void setCorrectAnswer(CorrectAnswer correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
 
@@ -113,8 +116,6 @@ public class Question {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
-	
-
 
 	@Override
 	public int hashCode() {
@@ -145,10 +146,7 @@ public class Question {
 			return false;
 		if (approved != other.approved)
 			return false;
-		if (correctAnswer == null) {
-			if (other.correctAnswer != null)
-				return false;
-		} else if (!correctAnswer.equals(other.correctAnswer))
+		if (correctAnswer != other.correctAnswer)
 			return false;
 		if (questionId != other.questionId)
 			return false;

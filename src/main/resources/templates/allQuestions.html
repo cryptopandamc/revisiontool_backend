@@ -19,13 +19,13 @@
 				<li th:text="${answer.answerText}"></li>
 			</ul>
 			<p>
-				<a th:href="@{'EditQuestion/' + ${question.questionId} }">Edit
+				<a th:href="@{'/EditQuestion/' + ${question.questionId} }">Edit
 					this question</a>
 		</div>
 
 
 		<div>
-			<a href="AddQuestion">Add a new question</a>
+			<a href="/revise/AddQuestion">Add a new question</a>
 		</div>
 
 	</div>

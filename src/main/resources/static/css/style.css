@@ -1,16 +1,16 @@
 form {
-	width: 50%;
+	width: 75%;
 	margin: auto;
 }
 
 table {
-	width: 50%;
+	width: 75%;
 	margin: auto;
 	text-align: left;
 }
 
 table, th, td {
-	border: 1px solid #9966ff;
+	border: 1px solid #ccc;
 	border-collapse: collapse;
 }
 

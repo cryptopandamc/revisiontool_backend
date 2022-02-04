@@ -14,13 +14,14 @@
 
 		<div th:each="question :  ${allNotApprovedQuestions}">
 			<p th:text="${question.questionText}"></p>
-			<p th:text="${question.approved}"></p>
+			<p th:text=" 'The trainee has marked the correct answer as ' + ${question.correctAnswer}"></p>
 			<ul th:each="answer: ${question.answers}">
 				<li th:text="${answer.answerText}"></li>
 			</ul>
 			<p>
-				<a th:href="@{'ApproveQuestion/' + ${question.questionId} }">Approve
-					this question</a>
+				<a th:href="@{'ApproveQuestionSubmit/' + ${question.questionId} }" >Approve
+					this question
+					</a>
 		</div>
 
 

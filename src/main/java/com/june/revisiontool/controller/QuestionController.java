@@ -24,13 +24,12 @@ public class QuestionController {
 	@Autowired
 	private TagService tagService;
 
-	
 	@GetMapping("/AllQuestions")
 	public ModelAndView allQuestions(ModelAndView modelAndView) {
 		modelAndView.addObject("allQuestions", questionService.retrieveAll());
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/AllNotApprovedQuestions")
 	public ModelAndView allNotQuestions(ModelAndView modelAndView) {
 		modelAndView.addObject("allNotApprovedQuestions", questionService.retrieveNotApproved());
@@ -59,12 +58,12 @@ public class QuestionController {
 		Optional<Question> question = questionService.retrieveOne(questionId);
 		List<Answer> answers = question.get().getAnswers();
 		AnswerWrapper answerWrapper = new AnswerWrapper();
-		for (int i = 0	; i >= answers.size(); i++) {
+		for (int i = 0; i >= answers.size(); i++) {
 			Answer answer = answers.get(i);
 			answer.setAnswerId(answer.getAnswerId());
-	        answerWrapper.addAnswer(answer, question.get());
-	    }
-		
+			answerWrapper.addAnswer(answer, question.get());
+		}
+
 		modelAndView.addObject("question", question.get());
 		modelAndView.addObject("allTags", tagService.retrieveAll());
 		modelAndView.addObject("answers", question.get().getAnswers());
@@ -89,34 +88,12 @@ public class QuestionController {
 		modelAndView.setViewName("allQuestions");
 		return modelAndView;
 	}
-	
-	@GetMapping("/ApproveQuestion/{questionId}")
-	public ModelAndView approveQuestion(@PathVariable("questionId") long questionId, ModelAndView modelAndView) {
-		Optional<Question> question = questionService.retrieveOne(questionId);
-		List<Answer> answers = question.get().getAnswers();
-		AnswerWrapper answerWrapper = new AnswerWrapper();
-		for (int i = 0	; i >= answers.size(); i++) {
-			Answer answer = answers.get(i);
-			answer.setAnswerId(answer.getAnswerId());
-	        answerWrapper.addAnswer(answer, question.get());
-	    }
-		
-		modelAndView.addObject("question", question.get());
-		System.err.println(question.get());
+
+	@GetMapping("/ApproveQuestionSubmit/{questionId}")
+	public ModelAndView approveQuestionSubmit(@PathVariable long questionId, ModelAndView modelAndView) {
+		Question question = questionService.retrieveOne(questionId).get();
 		modelAndView.addObject("allTags", tagService.retrieveAll());
-		modelAndView.addObject("answers", question.get().getAnswers());
-		if (question.isPresent()) {
-			modelAndView.setViewName("approveQuestion");
-			return modelAndView;
-		}
-		modelAndView.addObject("question", question.get());
-		modelAndView.addObject("allTags", tagService.retrieveAll());
-		modelAndView.addObject("answers", question.get().getAnswers());
-		return modelAndView;
-	}
-	
-	@PostMapping("/ApproveQuestionSubmit")
-	public ModelAndView approveQuestionSubmit(ModelAndView modelAndView, Question question) {
+		modelAndView.addObject("answers", question.getAnswers());
 		if (questionService.approveQuestion(question)) {
 			modelAndView.addObject("allQuestions", questionService.retrieveAll());
 			modelAndView.setViewName("allQuestions");

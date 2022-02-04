@@ -15,7 +15,7 @@ insert into QUESTION_ANSWERS(question_question_id, answers_answer_id) values (1,
 insert into QUESTION_ANSWERS(question_question_id, answers_answer_id) values (1,3);
 insert into QUESTION_ANSWERS(question_question_id, answers_answer_id) values (1,4);
 
-insert into QUESTION (QUESTION_ID, CORRECT_ANSWER, QUESTION_TEXT, APPROVED) VALUES (QUESTION_SEQ.nextval, 'B', 'What is the default value of a String?', false);
+insert into QUESTION (QUESTION_ID, CORRECT_ANSWER, QUESTION_TEXT, APPROVED) VALUES (QUESTION_SEQ.nextval, 'C', 'What is the default value of a String?', false);
 
 insert into ANSWER (ANSWER_ID, ANSWER_TEXT) values (ANSWER_SEQ.nextval, '""');
 insert into ANSWER (ANSWER_ID, ANSWER_TEXT) values (ANSWER_SEQ.nextval, 'Set');
