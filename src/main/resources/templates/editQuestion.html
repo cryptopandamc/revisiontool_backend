@@ -9,9 +9,9 @@
 	<div class="container">
 		<div th:insert="fragments/menu.html"></div>
 
-
-		<h1>Edit Question Details</h1>
-
+		<div>
+			<h1>Edit Question Details</h1>
+		</div>
 
 		<form action="#" th:action="@{/EditQuestionSubmit}"
 			th:object="${question}" method="post">

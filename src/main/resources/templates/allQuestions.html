@@ -9,11 +9,11 @@
 	<div class="container">
 		<div th:insert="fragments/menu.html"></div>
 		<div>
-			<h1>List of questions in the database</h1>
+			<h1 class="header">List of questions in the database</h1>
 		</div>
 
-		<div th:each="question :  ${allQuestions}">
-			<p th:text="${question.questionText}"></p>
+		<div th:each="question :  ${allQuestions}" class="div-table">
+			<p th:text="${question.questionText}" class="div-table-row"></p>
 			<p th:text="${question.approved}"></p>
 			<ul th:each="answer: ${question.answers}">
 				<li th:text="${answer.answerText}"></li>
@@ -24,9 +24,6 @@
 		</div>
 
 
-		<div>
-			<a href="/revise/AddQuestion">Add a new question</a>
-		</div>
 
 	</div>
 </body>
