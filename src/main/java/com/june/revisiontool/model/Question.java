@@ -18,6 +18,8 @@ import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 @Entity
 public class Question {
 
@@ -51,6 +53,7 @@ public class Question {
 		this.approved = approved;
 	}
 
+	@JsonCreator
 	public Question(String questionText, List<Answer> answers, CorrectAnswer correctAnswer, boolean approved,
 			List<Tag> tags) {
 		super();
@@ -62,7 +65,6 @@ public class Question {
 	}
 
 	public Question() {
-		super();
 	}
 
 	public boolean addAnswer(Answer answer) {

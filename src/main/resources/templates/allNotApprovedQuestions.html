@@ -9,10 +9,10 @@
 	<div class="container">
 		<div th:insert="fragments/menu.html"></div>
 		<div>
-			<h1>List of not approved questions in the database</h1>
+			<h1 class="header">List questions requiring approval</h1>
 		</div>
 
-		<div th:each="question :  ${allNotApprovedQuestions}">
+		<div th:each="question :  ${allNotApprovedQuestions}" class="div-table">
 			<p th:text="${question.questionText}"></p>
 			<p th:text=" 'The trainee has marked the correct answer as ' + ${question.correctAnswer}"></p>
 			<ul th:each="answer: ${question.answers}">

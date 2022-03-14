@@ -10,9 +10,9 @@
 		<div th:insert="fragments/menu.html"></div>
 
 		<div>
-			<h1>Edit Question Details</h1>
+			<h1 class="header">Edit Question Details</h1>
 		</div>
-
+<div class="div-table">
 		<form action="#" th:action="@{/EditQuestionSubmit}"
 			th:object="${question}" method="post">
 
@@ -78,6 +78,7 @@
 
 				<input type="hidden" th:field="*{questionId}" value="${questionId}" />
 		</form>
+		</div>
 	</div>
 </body>
 </html>
