@@ -1,10 +1,12 @@
 package com.june.revisiontool.api;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.june.revisiontool.model.Question;
 import com.june.revisiontool.service.QuestionService;
@@ -23,7 +24,7 @@ import com.june.revisiontool.service.QuestionService;
 @RestController
 @RequestMapping("/api/v1/question/")
 @CrossOrigin(origins = "http://localhost:3000")
-public class RestApi {
+public class QuestionAPI {
 
 	@Autowired
 	private QuestionService questionService;
@@ -44,21 +45,26 @@ public class RestApi {
 	}
 
 	@PostMapping("CreateQuestion")
-	public ResponseEntity<Void> createQuestion(@RequestBody Question question, BindingResult bindingResult) {
-		questionService.create(question);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{questionId}")
-				.buildAndExpand(question.getQuestionId()).toUri();
-		return ResponseEntity.created(uri).build();
+	public ResponseEntity<HttpStatus> createQuestion(@Valid @RequestBody Question question,
+			BindingResult bindingResult) {
+		if (!questionService.create(question)) {
+			System.err.println(question);
+			return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).build();
+		}
+		System.err.println(question);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+
 	}
-	/*
-	 * TODO getting errors in talend, will move on for now and come back to this
-	 * soon
-	 * 
-	 * @PutMapping("UpdateQuestion/{questionId}") public ResponseEntity<Question>
-	 * updateQuestin(@PathVariable("questionId") long questionId,
-	 * 
-	 * @RequestBody Question question) { if (questionService.update(question)) {
-	 * return ResponseEntity.ok(question); } return
-	 * ResponseEntity.notFound().build(); }
-	 */
+
+	// TODO getting errors in talend, will move on for now and come back to thissoon
+
+	@PutMapping("UpdateQuestion/{questionId}")
+	public ResponseEntity<Question> updateQuestin(@PathVariable("questionId") long questionId,
+			@RequestBody Question question) {
+		if (questionService.update(question)) {
+			return ResponseEntity.ok(question);
+		}
+		return ResponseEntity.notFound().build();
+	}
+
 }

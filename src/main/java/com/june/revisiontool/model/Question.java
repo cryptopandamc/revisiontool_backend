@@ -41,19 +41,12 @@ public class Question {
 	@Column
 	private boolean approved;
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Tag> tags;
 
-	public Question(String questionText, List<Answer> answers, CorrectAnswer correctAnswer, boolean approved) {
-		super();
-		this.questionText = questionText;
-		this.answers = answers;
-		this.correctAnswer = correctAnswer;
-		this.approved = approved;
-	}
+	
 
-	@JsonCreator
 	public Question(String questionText, List<Answer> answers, CorrectAnswer correctAnswer, boolean approved,
 			List<Tag> tags) {
 		super();
@@ -64,6 +57,8 @@ public class Question {
 		this.tags = tags;
 	}
 
+	//@JsonCreator maybe need another constructor here
+	
 	public Question() {
 	}
 
@@ -94,6 +89,8 @@ public class Question {
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
+
+	
 
 	public CorrectAnswer getCorrectAnswer() {
 		return correctAnswer;

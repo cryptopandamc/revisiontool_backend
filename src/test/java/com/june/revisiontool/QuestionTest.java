@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class QuestionTest {
 	@Autowired
 	private TagService tagService;
 	
+	@Autowired
+	private EntityManager entityManager;
+	
 	private List<Answer> answers;
 	private List<Question> questions;
 	private List<Tag> tags;
@@ -47,8 +52,9 @@ public class QuestionTest {
 
 	@Test
 	void test_thatAQuestionCanBePersisted() {	
-		Question question = new Question("This is a question", answers, CorrectAnswer.B, false);
+		Question question = new Question("this is a question", answers, CorrectAnswer.B, false, tags);
 		boolean created = questionService.create(question);
+		System.out.println(question);
 		assertTrue(created);
 	}
 	
@@ -67,8 +73,10 @@ public class QuestionTest {
 	@Test
 	void test_ThatAQuestionCanBeUpdated() {
 		Question questionToUpdate = questionService.retrieveOne(1).get();
+		entityManager.detach(questionToUpdate);
 		questionToUpdate.setCorrectAnswer(CorrectAnswer.D);
-		assertNotEquals("B", questionToUpdate.getCorrectAnswer());
+		Question updatedQuestion = questionService.retrieveOne(1).get();
+		assertNotEquals(updatedQuestion.getCorrectAnswer(), questionToUpdate.getCorrectAnswer());
 	}
 	
 	@Test

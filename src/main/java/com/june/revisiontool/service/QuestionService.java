@@ -1,13 +1,11 @@
 package com.june.revisiontool.service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.june.revisiontool.model.Answer;
 import com.june.revisiontool.model.Question;
 import com.june.revisiontool.repository.QuestionDao;
 
@@ -19,7 +17,10 @@ public class QuestionService {
 
 	public boolean create(Question question) {
 		questionDao.save(question);
-		return true;
+		if (question.getQuestionId() != 0) {
+			return true;
+		}
+		return false;
 	}
 
 	public Optional<Question> retrieveOne(long questionId) {
@@ -40,9 +41,9 @@ public class QuestionService {
 
 	public boolean approveQuestion(Question question) {
 		if (retrieveOne(question.getQuestionId()).isPresent()) {
-		question.setApproved(true);
-		update(question);
-		return true;
+			question.setApproved(true);
+			update(question);
+			return true;
 		}
 		return false;
 	}
@@ -50,7 +51,5 @@ public class QuestionService {
 	public List<Question> retrieveNotApproved() {
 		return questionDao.retrieveNotApproved();
 	}
-
-	
 
 }
