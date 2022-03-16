@@ -48,15 +48,13 @@ public class QuestionAPI {
 	public ResponseEntity<HttpStatus> createQuestion(@Valid @RequestBody Question question,
 			BindingResult bindingResult) {
 		if (!questionService.create(question)) {
-			System.err.println(question);
 			return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).build();
 		}
-		System.err.println(question);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 
 	}
 
-	// TODO getting errors in talend, will move on for now and come back to thissoon
+	// TODO getting errors in talend, will move on for now and come back to this soon
 
 	@PutMapping("UpdateQuestion/{questionId}")
 	public ResponseEntity<Question> updateQuestin(@PathVariable("questionId") long questionId,

@@ -54,7 +54,6 @@ public class QuestionTest {
 	void test_thatAQuestionCanBePersisted() {	
 		Question question = new Question("this is a question", answers, CorrectAnswer.B, false, tags);
 		boolean created = questionService.create(question);
-		System.out.println(question);
 		assertTrue(created);
 	}
 	
