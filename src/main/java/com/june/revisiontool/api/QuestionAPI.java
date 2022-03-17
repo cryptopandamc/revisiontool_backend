@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.june.revisiontool.model.Question;
+import com.june.revisiontool.model.Tag;
 import com.june.revisiontool.service.QuestionService;
 
 @RestController
@@ -63,4 +64,10 @@ public class QuestionAPI {
 		return ResponseEntity.notFound().build();
 	}
 
+	
+	@GetMapping("GetByTag")
+	public ResponseEntity<List<Question>> questionsByTag(Long tagId){
+		List<Question> questionByTag = questionService.findByTagId(tagId);
+		return ResponseEntity.ok(questionByTag);
+	}
 }

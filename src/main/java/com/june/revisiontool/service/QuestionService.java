@@ -57,4 +57,8 @@ public class QuestionService {
 		return questionDao.getByTags(tag);
 	}
 
+	public List<Question> findByTagId(long tagId) {
+		return questionDao.findByTagId(tagId);
+	}
+
 }
