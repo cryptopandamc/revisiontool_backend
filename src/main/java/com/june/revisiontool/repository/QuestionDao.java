@@ -7,11 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.june.revisiontool.model.Answer;
 import com.june.revisiontool.model.Question;
+import com.june.revisiontool.model.Tag;
 
 public interface QuestionDao extends JpaRepository <Question, Long> {
 
 	@Query(value ="Select q from Question q where q.approved  = false")
 	List<Question> retrieveNotApproved();
+
+	List<Question> getByTags(Tag tag) ;
 
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.june.revisiontool.model.Question;
+import com.june.revisiontool.model.Tag;
 import com.june.revisiontool.repository.QuestionDao;
 
 @Service
@@ -50,6 +51,10 @@ public class QuestionService {
 
 	public List<Question> retrieveNotApproved() {
 		return questionDao.retrieveNotApproved();
+	}
+
+	public List<Question> retrieveByTag(Tag tag) {
+		return questionDao.getByTags(tag);
 	}
 
 }

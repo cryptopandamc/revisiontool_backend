@@ -136,5 +136,12 @@ public class QuestionTest {
 		assertNotEquals(allQuestions.size(), questionsNotApproved.size());
 	}
 	
+	@Test
+	void test_ThatAListOfQuestionsCanBeRetrieved_ForACertainTag() {
+		Tag firstTag = tagService.retrieveOne(8).get();	
+		List<Question> questionsByTag = questionService.retrieveByTag(firstTag);
+		System.err.println(questionsByTag);
+		assertFalse(questionsByTag.isEmpty());
+	}
 	
 }

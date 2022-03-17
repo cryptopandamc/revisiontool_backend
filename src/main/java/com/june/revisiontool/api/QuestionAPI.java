@@ -54,8 +54,6 @@ public class QuestionAPI {
 
 	}
 
-	// TODO getting errors in talend, will move on for now and come back to this soon
-
 	@PutMapping("UpdateQuestion/{questionId}")
 	public ResponseEntity<Question> updateQuestin(@PathVariable("questionId") long questionId,
 			@RequestBody Question question) {
