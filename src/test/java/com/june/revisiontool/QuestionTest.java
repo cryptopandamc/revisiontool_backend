@@ -124,7 +124,8 @@ public class QuestionTest {
 	@Test
 	void test_ThatAQuestionCanBeApprovedAfterItIsAdded() {
 		Question questionToApprove = questionService.retrieveOne(1).get();
-		questionService.approveQuestion(questionToApprove);
+		long questionId = questionToApprove.getQuestionId();
+		questionService.approveQuestion(questionToApprove, questionId);
 		questionService.update(questionToApprove);
 		assertTrue(questionToApprove.isApproved());
 	}

@@ -74,4 +74,12 @@ public class QuestionAPI {
 		List<Question> questionsNotApproved = questionService.retrieveNotApproved();
 		return ResponseEntity.ok(questionsNotApproved);
 	}
+
+	@PutMapping("ApproveQuestion/{questionId}")
+	public ResponseEntity<Question> approveQuestion(@PathVariable("questionId") long questionId, @RequestBody Question question) {
+		if (questionService.approveQuestion(question, questionId))  {
+			return ResponseEntity.ok(question);
+		}
+		return ResponseEntity.notFound().build();
+	}
 }

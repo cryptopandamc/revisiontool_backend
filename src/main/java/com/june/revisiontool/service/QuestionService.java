@@ -40,10 +40,10 @@ public class QuestionService {
 		return false;
 	}
 
-	public boolean approveQuestion(Question question) {
+	public boolean approveQuestion(Question question, long questionId) {
 		if (retrieveOne(question.getQuestionId()).isPresent()) {
 			question.setApproved(true);
-			update(question);
+			questionDao.save(question);
 			return true;
 		}
 		return false;
