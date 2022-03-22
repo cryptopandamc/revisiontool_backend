@@ -147,6 +147,7 @@ public class QuestionTest {
 	void test_ThatAListOfQuestionsCanBeRetrievedUsingTheTagId() {
 		long tagId = tagService.retrieveOne(8).get().getTagId();
 		List<Question> questionsByTag = questionService.findByTagId(tagId);
+		System.err.println(questionsByTag);
 		assertFalse(questionsByTag.isEmpty());
 	}
 	

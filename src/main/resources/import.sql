@@ -88,5 +88,5 @@ insert into QUESTION_ANSWERS(question_question_id, answers_answer_id) values (4,
 insert into QUESTION_ANSWERS(question_question_id, answers_answer_id) values (4,15);
 insert into QUESTION_ANSWERS(question_question_id, answers_answer_id) values (4,16);
 
-insert into QUESTION_TAGS (QUESTION_QUESTION_ID, TAGS_TAG_ID) VALUES (2,8);
-insert into QUESTION_TAGS (QUESTION_QUESTION_ID, TAGS_TAG_ID) VALUES (2,2);
+insert into QUESTION_TAGS (QUESTION_QUESTION_ID, TAGS_TAG_ID) VALUES (4,8);
+insert into QUESTION_TAGS (QUESTION_QUESTION_ID, TAGS_TAG_ID) VALUES (4,2);
