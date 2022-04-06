@@ -1,3 +1,6 @@
+insert into Role(ROLE_ID, NAME) values (ROLE_SEQ.nextval, 'Trainer');
+insert into Role(ROLE_ID, NAME) values (ROLE_SEQ.nextval, 'Trainee');
+
 insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'collections');
 insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'four pillars');
 insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'data types');

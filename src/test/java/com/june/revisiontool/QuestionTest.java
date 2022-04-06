@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -151,21 +150,5 @@ public class QuestionTest {
 		assertFalse(questionsByTag.isEmpty());
 	}
 	
-	@Disabled
-	@Test
-	void test_ThatAQuestionCanBeCreatedIfTagsAreNotInitiallyAttached() {
-		Tag firstTag = new Tag("four pillars");
-		firstTag.setTagId(2);
-		Tag secondTag = new Tag("collections");
-		firstTag.setTagId(1);
-		tags.add(firstTag);
-		tags.add(secondTag);
-		answers.add(new Answer("a"));
-		answers.add(new Answer("b"));
-		answers.add(new Answer("d"));
-		answers.add(new Answer("c")); 
-		Question newQuestion = new Question("Hello", answers, CorrectAnswer.C, false, tags);
-		questionService.create(newQuestion);
-		assertTrue(newQuestion.getQuestionId()>0);
-	}
+	
 }
