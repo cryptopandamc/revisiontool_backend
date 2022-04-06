@@ -77,7 +77,7 @@ public class QuestionAPI {
 
 	@PutMapping("ApproveQuestion/{questionId}")
 	public ResponseEntity<Question> approveQuestion(@PathVariable("questionId") long questionId, @RequestBody Question question) {
-		if (questionService.approveQuestion(question, questionId))  {
+		if (questionService.approveQuestion(question))  {
 			return ResponseEntity.ok(question);
 		}
 		return ResponseEntity.notFound().build();
