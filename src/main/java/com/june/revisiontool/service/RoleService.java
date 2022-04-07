@@ -18,4 +18,8 @@ public class RoleService {
 		return roleDao.findAll();
 	}
 
+	public Role findByName(String name) {
+		return roleDao.findByName(name);
+	}
+
 }

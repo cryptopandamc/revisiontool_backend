@@ -26,4 +26,12 @@ public class RoleTest {
 		assertFalse(allRoles.isEmpty());
 	}
 	
+	@Test
+	void test_thatARoleCanBeRetrievedUsingTheName() {
+		String name = "Trainer";
+		Role role = roleService.findByName(name);
+		System.err.println(role);
+		assertFalse(role.getRoleId() == 0);
+	}
+	
 }
