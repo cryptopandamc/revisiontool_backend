@@ -1,6 +1,12 @@
 insert into Role(ROLE_ID, NAME) values (ROLE_SEQ.nextval, 'Trainer');
 insert into Role(ROLE_ID, NAME) values (ROLE_SEQ.nextval, 'Trainee');
 
+insert into User(USER_ID, NAME, EMAIL, PASSWORD) values (USER_SEQ.nextval, 'June', 'june@june.com', 'TBD');
+insert into User(USER_ID, NAME, EMAIL, PASSWORD) values (USER_SEQ.nextval, 'Joe', 'joe@joe.com', 'TBD');
+
+insert into USER_ROLES(USER_USER_ID, ROLES_ROLE_ID) values (1, 1);
+insert into USER_ROLES(USER_USER_ID, ROLES_ROLE_ID) values (2, 2);
+
 insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'collections');
 insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'four pillars');
 insert into Tag(TAG_ID, NAME) values (TAG_SEQ.nextval, 'data types');
